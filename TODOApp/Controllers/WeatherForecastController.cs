@@ -24,13 +24,14 @@ namespace TODOApp.Controllers
         }
 
         [Route("Postweather")]
-        public void Postweather([FromBody] string value)
+        public IActionResult Postweather([FromBody]string value)
         {
-            var rng = new Random();
-            Summaries.SetValue(value, 2);
+            //var rng = new Random();
+            //Summaries.SetValue(value, 2);
 
-            Console.WriteLine("Ce naiba frate");
-            Console.WriteLine(value);
+            //Console.WriteLine("Ce naiba frate");
+
+            return Ok(value.ToString());
 
 
             /*return Enumerable.Range(1, 5).Select(index => new WeatherForecast
