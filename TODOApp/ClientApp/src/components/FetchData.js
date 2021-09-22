@@ -24,21 +24,22 @@ export class FetchData extends Component {
 
  
     async postWeatherData() {
-        debugger;
-        const requestOptions = {
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
+
+        var raw = JSON.stringify("Hey");
+
+        var requestOptions = {
             method: 'POST',
-            mode: 'cors',
-            headers: { 'Content-type': 'application/json' },
-            body: JSON.stringify({ 'value': 'React POST Request Example' })
+            headers: myHeaders,
+            body: raw,
+            redirect: 'follow'
         };
-        console.log(requestOptions);
-        debugger;
-        await fetch('weatherforecast/Postweather', requestOptions);
-        console.log("aaa");
-        /*const data = await response.json();*/
-        /*this.setState({ forecasts: data, loading: false });*/
-        /*const data = await response.json();
-        this.setState({ postId: data.id });*/
+
+        fetch("https://localhost:44380/weatherforecast/Postweather", requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
     }
 
   static renderForecastsTable(forecasts) {
@@ -74,7 +75,7 @@ export class FetchData extends Component {
     return (
       <div>
             <h1 id="tabelLabel" >Weather forecast</h1>
-            <form id="populateData" onSubmit={this.postWeatherData}>
+            <form id="populateData" onSubmit={async () => await this.postWeatherData()}>
                 <input className="muie"></input>
                 <button type="submit">Submit</button>
                 </form>
