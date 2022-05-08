@@ -25,7 +25,7 @@ namespace TODOApp
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=workshop-server-v1.database.windows.net;Initial Catalog=workshop-database;User ID=workshopadmin;Password=Azureshop1;Connect Timeout=30;Encrypt=True;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                optionsBuilder.UseSqlServer("LinkForConnection");
             }
         }
 
